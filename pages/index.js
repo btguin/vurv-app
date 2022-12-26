@@ -44,10 +44,11 @@ import fetch from "isomorphic-unfetch";
 //     console.log(data);
 //   }
 
+
 // const Index = ({ user }) => {
 export default function Index() {
   // generateCompletions();
-  const { user, error, isLoading } = useUser();
+//   const { user, error, isLoading } = useUser();
 //   if (isLoading) return <div>Loading...</div>;
 //   if (error) return <div>{error.message}</div>;
   //   const [todos, setTodos] = useState([]);
@@ -91,7 +92,7 @@ export default function Index() {
             <Button
               variant="text"
               color="primary"
-              href="/api/auth/login"
+              onClick={() => auth0.loginWithRedirect()}
               sx={{ m: 1 }}
             >
               LOG IN
