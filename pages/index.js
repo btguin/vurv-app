@@ -18,6 +18,8 @@ import { getSupabase } from "../utils/supabase";
 import { useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
+import { Auth0Client } from '@auth0/auth0-spa-js';
+
 
 // const configuration = new Configuration({
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
@@ -46,6 +48,10 @@ import fetch from "isomorphic-unfetch";
 
 // const Index = ({ user }) => {
 export default function Index() {
+    const auth0 = new Auth0Client({
+        domain: 'dev-f3qddlxasfyqhf1a.us.auth0.com',
+        clientId: 'ymhhsAhLwWmrnvR63e20X9TpVCcSw6SD'
+      });
   // generateCompletions();
   //   const { user, error, isLoading } = useUser();
   //   if (isLoading) return <div>Loading...</div>;
