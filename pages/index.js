@@ -78,7 +78,7 @@ export default function Index() {
         <Toolbar>
           <img src="/unboundedLogo.svg" alt="A description of the image" />
           <Box sx={{ flexGrow: 1 }}></Box>
-          {user && (
+          {/* {user && ( */}
             <Button
               variant="contained"
               color="primary"
@@ -87,8 +87,8 @@ export default function Index() {
             >
               LOG OUT
             </Button>
-          )}
-          {!user && (
+          {/* )} */}
+          {/* {!user && ( */}
             <Box>
               <Button
                 variant="text"
@@ -107,7 +107,7 @@ export default function Index() {
                 GET STARTED
               </Button>
             </Box>
-          )}
+          {/* )} */}
         </Toolbar>
       </AppBar>
       <Box sx={{ p: 3, mr: 30, ml: 30 }}>
