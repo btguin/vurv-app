@@ -48,12 +48,10 @@ import fetch from "isomorphic-unfetch";
 export default function Index() {
   // generateCompletions();
   const { user, error, isLoading } = useUser();
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+//   if (isLoading) return <div>Loading...</div>;
+//   if (error) return <div>{error.message}</div>;
   //   const [todos, setTodos] = useState([]);
-  if (user) {
-    console.log("test user");
-  }
+  
   //     const supabase = getSupabase(user.accessToken);
 
   //     useEffect(() => {
