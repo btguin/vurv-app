@@ -53,27 +53,27 @@ export default function Index() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   const [todos, setTodos] = useState([]);
-  if (user) {
-    const supabase = getSupabase(user.accessToken);
+//   if (user) {
+//     const supabase = getSupabase(user.accessToken);
 
-    useEffect(() => {
-      const fetchTodos = async () => {
-        const { data } = await supabase.from("todo").select("*");
-        setTodos(data);
-      };
+//     useEffect(() => {
+//       const fetchTodos = async () => {
+//         const { data } = await supabase.from("todo").select("*");
+//         setTodos(data);
+//       };
 
-      fetchTodos();
-    }, []);
-  }
+//       fetchTodos();
+//     }, []);
+//   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {user && <p>{user.email}</p>}
+      {/* {user && <p>{user.email}</p>}
       {todos?.length > 0 ? (
         todos.map((todo) => <p key={todo.id}>{todo.title}</p>)
       ) : (
         <p>You don't have any todos</p>
-      )}
+      )} */}
       <AppBar position="static" color="secondary">
         <Toolbar>
           <img src="/unboundedLogo.svg" alt="A description of the image" />
