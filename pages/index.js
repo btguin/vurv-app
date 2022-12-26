@@ -101,7 +101,7 @@ export default function Index() {
               onClick={async () => {
                 await auth0.loginWithRedirect({
                   authorizationParams: {
-                    redirect_uri: "http://localhost:3000/",
+                    redirect_uri: "https://vurv-app.vercel.app/api/auth/callback",
                   },
                 });
                 // logged in. you can get the user profile like this:
