@@ -27,32 +27,32 @@ import fetch from 'isomorphic-unfetch';
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-async function generateCompletions() {
-    const response = await fetch('https://api.openai.com/v1/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
-      },
-      body: JSON.stringify({
-        model: 'text-davinci-003',
-        prompt: 'Say this is a test',
-        temperature: 0,
-        max_tokens: 7
-      })
-    });
-    const data = await response.json();
-    console.log(data);
-  }
+// async function generateCompletions() {
+//     const response = await fetch('https://api.openai.com/v1/completions', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer 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'
+//       },
+//       body: JSON.stringify({
+//         model: 'text-davinci-003',
+//         prompt: 'Say this is a test',
+//         temperature: 0,
+//         max_tokens: 7
+//       })
+//     });
+//     const data = await response.json();
+//     console.log(data);
+//   }
   
 
 // const Index = ({ user }) => {
 export default function Index() {
     // generateCompletions();
-  const { user, error, isLoading } = useUser();
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-  const [todos, setTodos] = useState([]);
+//   const { user, error, isLoading } = useUser();
+//   if (isLoading) return <div>Loading...</div>;
+//   if (error) return <div>{error.message}</div>;
+//   const [todos, setTodos] = useState([]);
 //   if (user) {
 //     const supabase = getSupabase(user.accessToken);
 
