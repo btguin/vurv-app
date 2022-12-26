@@ -17,8 +17,7 @@ import Link from "next/link";
 import { getSupabase } from "../utils/supabase";
 import { useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import fetch from 'isomorphic-unfetch';
-
+import fetch from "isomorphic-unfetch";
 
 // const configuration = new Configuration({
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
@@ -44,27 +43,28 @@ import fetch from 'isomorphic-unfetch';
 //     const data = await response.json();
 //     console.log(data);
 //   }
-  
 
 // const Index = ({ user }) => {
 export default function Index() {
-    // generateCompletions();
-//   const { user, error, isLoading } = useUser();
-//   if (isLoading) return <div>Loading...</div>;
-//   if (error) return <div>{error.message}</div>;
-//   const [todos, setTodos] = useState([]);
-//   if (user) {
-//     const supabase = getSupabase(user.accessToken);
+  // generateCompletions();
+  const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+  //   const [todos, setTodos] = useState([]);
+  if (user) {
+    console.log("test user");
+  }
+  //     const supabase = getSupabase(user.accessToken);
 
-//     useEffect(() => {
-//       const fetchTodos = async () => {
-//         const { data } = await supabase.from("todo").select("*");
-//         setTodos(data);
-//       };
+  //     useEffect(() => {
+  //       const fetchTodos = async () => {
+  //         const { data } = await supabase.from("todo").select("*");
+  //         setTodos(data);
+  //       };
 
-//       fetchTodos();
-//     }, []);
-//   }
+  //       fetchTodos();
+  //     }, []);
+  //   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -79,34 +79,34 @@ export default function Index() {
           <img src="/unboundedLogo.svg" alt="A description of the image" />
           <Box sx={{ flexGrow: 1 }}></Box>
           {/* {user && ( */}
+          <Button
+            variant="contained"
+            color="primary"
+            href="/api/auth/logout"
+            sx={{ m: 1 }}
+          >
+            LOG OUT
+          </Button>
+          {/* )} */}
+          {/* {!user && ( */}
+          <Box>
+            <Button
+              variant="text"
+              color="primary"
+              href="/api/auth/login"
+              sx={{ m: 1 }}
+            >
+              LOG IN
+            </Button>
             <Button
               variant="contained"
               color="primary"
-              href="/api/auth/logout"
+              href="/api/auth/login"
               sx={{ m: 1 }}
             >
-              LOG OUT
+              GET STARTED
             </Button>
-          {/* )} */}
-          {/* {!user && ( */}
-            <Box>
-              <Button
-                variant="text"
-                color="primary"
-                href="/api/auth/login"
-                sx={{ m: 1 }}
-              >
-                LOG IN
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                href="/api/auth/login"
-                sx={{ m: 1 }}
-              >
-                GET STARTED
-              </Button>
-            </Box>
+          </Box>
           {/* )} */}
         </Toolbar>
       </AppBar>
