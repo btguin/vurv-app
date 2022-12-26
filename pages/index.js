@@ -44,15 +44,14 @@ import fetch from "isomorphic-unfetch";
 //     console.log(data);
 //   }
 
-
 // const Index = ({ user }) => {
 export default function Index() {
   // generateCompletions();
-//   const { user, error, isLoading } = useUser();
-//   if (isLoading) return <div>Loading...</div>;
-//   if (error) return <div>{error.message}</div>;
+  //   const { user, error, isLoading } = useUser();
+  //   if (isLoading) return <div>Loading...</div>;
+  //   if (error) return <div>{error.message}</div>;
   //   const [todos, setTodos] = useState([]);
-  
+
   //     const supabase = getSupabase(user.accessToken);
 
   //     useEffect(() => {
@@ -92,7 +91,16 @@ export default function Index() {
             <Button
               variant="text"
               color="primary"
-              onClick={() => auth0.loginWithRedirect()}
+              onClick={async () => {
+                await auth0.loginWithRedirect({
+                  authorizationParams: {
+                    redirect_uri: "http://localhost:3000/",
+                  },
+                });
+                // logged in. you can get the user profile like this:
+                const user = await auth0.getUser();
+                console.log(user);
+              }}
               sx={{ m: 1 }}
             >
               LOG IN
