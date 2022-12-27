@@ -47,39 +47,39 @@ import { Auth0Client } from "@auth0/auth0-spa-js";
 
 // const Index = ({ user }) => {
 export default function Index() {
-//     const { user, error, isLoading } = useUser();
+  const { user, error, isLoading } = useUser();
 
-//     if (isLoading) return <div>Loading...</div>;
-//     if (error) return <div>{error.message}</div>;
-//     if (!user) return <div><a href="/api/auth/login">Login</a></div>;
-  
-//     return (
-//         user && (
-//             <div>
-//             <a href="/api/auth/logout">Logout</a>
-//               <img src={user.picture} alt={user.name} />
-//               <h2>{user.name}</h2>
-//               <p>{user.email}</p>
-//             </div>
-//         )
-//   );
-// }
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+  //     if (!user) return <div><a href="/api/auth/login">Login</a></div>;
 
-// generateCompletions();
+  //     return (
+  //         user && (
+  //             <div>
+  //             <a href="/api/auth/logout">Logout</a>
+  //               <img src={user.picture} alt={user.name} />
+  //               <h2>{user.name}</h2>
+  //               <p>{user.email}</p>
+  //             </div>
+  //         )
+  //   );
+  // }
 
-//   const [todos, setTodos] = useState([]);
+  // generateCompletions();
 
-//     const supabase = getSupabase(user.accessToken);
+  //   const [todos, setTodos] = useState([]);
 
-//     useEffect(() => {
-//       const fetchTodos = async () => {
-//         const { data } = await supabase.from("todo").select("*");
-//         setTodos(data);
-//       };
+  //     const supabase = getSupabase(user.accessToken);
 
-//       fetchTodos();
-//     }, []);
-//   }
+  //     useEffect(() => {
+  //       const fetchTodos = async () => {
+  //         const { data } = await supabase.from("todo").select("*");
+  //         setTodos(data);
+  //       };
+
+  //       fetchTodos();
+  //     }, []);
+  //   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -93,44 +93,30 @@ export default function Index() {
         <Toolbar>
           <img src="/unboundedLogo.svg" alt="A description of the image" />
           <Box sx={{ flexGrow: 1 }}></Box>
-          {/* {user && ( */}
-          <Button
-            variant="contained"
-            color="primary"
-            href="/api/auth/logout"
-            sx={{ m: 1 }}
-          >
-            LOG OUT
-          </Button>
-          {/* )} */}
-          {/* {!user && ( */}
-          <Box>
-            {/* <Button
-              variant="text"
-              color="primary"
-              onClick={async () => {
-                await auth0.loginWithRedirect({
-                  authorizationParams: {
-                    redirect_uri: "https://vurv-app.vercel.app/api/auth/callback"
-                  },
-                });
-                // logged in. you can get the user profile like this:
-                const user = await auth0.getUser();
-                console.log(user);
-              }}
-              sx={{ m: 1 }}
-            >
-              LOG IN
-            </Button> */}
-            <a href="/api/auth/login">Login</a>
+          {user && <Typography>{user.email}</Typography>}
+          {user && (
             <Button
               variant="contained"
               color="primary"
-              href="/api/auth/login"
+              href="/api/auth/logout"
               sx={{ m: 1 }}
             >
-              GET STARTED
+              LOG OUT
             </Button>
+          )}
+          {/* {!user && ( */}
+          <Box>
+            {!user && <a href="/api/auth/login">Login</a>}
+            {!user && (
+              <Button
+                variant="contained"
+                color="primary"
+                href="/api/auth/login"
+                sx={{ m: 1 }}
+              >
+                GET STARTED
+              </Button>
+            )}
           </Box>
           {/* )} */}
         </Toolbar>
