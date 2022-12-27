@@ -1,5 +1,6 @@
-import { handleAuth, handleCallback } from '@auth0/nextjs-auth0'
-import jwt from 'jsonwebtoken'
+import { handleAuth } from '@auth0/nextjs-auth0';
+// import { handleAuth, handleCallback } from '@auth0/nextjs-auth0';
+// import jwt from 'jsonwebtoken'
 
 // const afterCallback = async (req, res, session) => {
 //   const payload = {
@@ -12,7 +13,7 @@ import jwt from 'jsonwebtoken'
 //   return session
 // }
 
-export default handleAuth()
+export default handleAuth();
   // async callback(req, res) {
   //   try {
   //     await handleCallback(req, res, { afterCallback })
