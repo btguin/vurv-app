@@ -67,6 +67,7 @@ export default function Index() {
       }
 
       return <a href="/api/auth/login">Login</a>;
+    }
 
   //   const [todos, setTodos] = useState([]);
 
@@ -82,141 +83,141 @@ export default function Index() {
   //     }, []);
   //   }
 
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      {/* {user && <p>{user.email}</p>}
-      {todos?.length > 0 ? (
-        todos.map((todo) => <p key={todo.id}>{todo.title}</p>)
-      ) : (
-        <p>You don't have any todos</p>
-      )} */}
-      <AppBar position="static" color="secondary">
-        <Toolbar>
-          <img src="/unboundedLogo.svg" alt="A description of the image" />
-          <Box sx={{ flexGrow: 1 }}></Box>
-          {/* {user && ( */}
-          <Button
-            variant="contained"
-            color="primary"
-            href="/api/auth/logout"
-            sx={{ m: 1 }}
-          >
-            LOG OUT
-          </Button>
-          {/* )} */}
-          {/* {!user && ( */}
-          <Box>
-            {/* <Button
-              variant="text"
-              color="primary"
-              onClick={async () => {
-                await auth0.loginWithRedirect({
-                  authorizationParams: {
-                    redirect_uri: "https://vurv-app.vercel.app/api/auth/callback"
-                  },
-                });
-                // logged in. you can get the user profile like this:
-                const user = await auth0.getUser();
-                console.log(user);
-              }}
-              sx={{ m: 1 }}
-            >
-              LOG IN
-            </Button> */}
-            {/* <a href="/api/auth/login">Login</a> */}
-            <Button
-              variant="contained"
-              color="primary"
-              href="/api/auth/login"
-              sx={{ m: 1 }}
-            >
-              GET STARTED
-            </Button>
-          </Box>
-          {/* )} */}
-        </Toolbar>
-      </AppBar>
-      <Box sx={{ p: 3, mr: 30, ml: 30 }}>
-        <Typography
-          variant="h5"
-          gutterBottom
-          sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
-        >
-          Welcome to Vurvo. We use artificial intelligence to write essays.
-          Create an account to begin. Your first essay is free, after that it
-          costs $3 per month for up to 100 essays. An example prompt and essay
-          is shown below.
-        </Typography>
-        <Typography
-          variant="h6"
-          fontWeight="bold"
-          gutterBottom
-          sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
-        >
-          Essay Inputs
-        </Typography>
-        <Box sx={{ p: 2 }}>
-          <TextField
-            required
-            id="outlined-required"
-            label="Prompt"
-            defaultValue="Discuss the ways in which the Second Great Awakening and the Transcendentalist movement of the early 19th century influenced the development of American society and culture"
-            fullWidth
-            multiline
-            rows={2}
-          />
-        </Box>
-        <Box sx={{ p: 2 }}>
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          >
-            <Grid item xs={3}>
-              <TextField
-                required
-                id="outlined-required"
-                label="Number of Words (Max 1,000)"
-                defaultValue="1000"
-              />
-            </Grid>
-            <Grid item xs={9}>
-              <TextField
-                required
-                id="outlined-required"
-                label="Style"
-                defaultValue="1000"
-              />
-            </Grid>
-          </Grid>
-        </Box>
-        <Typography
-          variant="h6"
-          fontWeight="bold"
-          gutterBottom
-          sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
-        >
-          Essay
-        </Typography>
-        <Box sx={{ p: 2 }}>
-          <TextField
-            id="outlined-required"
-            label="Essay"
-            defaultValue="The Second Great Awakening and the Transcendentalist movement were two significant movements that emerged in the early 19th century and had a profound impact on the development of American society and culture.
+//   return (
+//     <Box sx={{ flexGrow: 1 }}>
+//       {/* {user && <p>{user.email}</p>}
+//       {todos?.length > 0 ? (
+//         todos.map((todo) => <p key={todo.id}>{todo.title}</p>)
+//       ) : (
+//         <p>You don't have any todos</p>
+//       )} */}
+//       <AppBar position="static" color="secondary">
+//         <Toolbar>
+//           <img src="/unboundedLogo.svg" alt="A description of the image" />
+//           <Box sx={{ flexGrow: 1 }}></Box>
+//           {/* {user && ( */}
+//           <Button
+//             variant="contained"
+//             color="primary"
+//             href="/api/auth/logout"
+//             sx={{ m: 1 }}
+//           >
+//             LOG OUT
+//           </Button>
+//           {/* )} */}
+//           {/* {!user && ( */}
+//           <Box>
+//             {/* <Button
+//               variant="text"
+//               color="primary"
+//               onClick={async () => {
+//                 await auth0.loginWithRedirect({
+//                   authorizationParams: {
+//                     redirect_uri: "https://vurv-app.vercel.app/api/auth/callback"
+//                   },
+//                 });
+//                 // logged in. you can get the user profile like this:
+//                 const user = await auth0.getUser();
+//                 console.log(user);
+//               }}
+//               sx={{ m: 1 }}
+//             >
+//               LOG IN
+//             </Button> */}
+//             {/* <a href="/api/auth/login">Login</a> */}
+//             <Button
+//               variant="contained"
+//               color="primary"
+//               href="/api/auth/login"
+//               sx={{ m: 1 }}
+//             >
+//               GET STARTED
+//             </Button>
+//           </Box>
+//           {/* )} */}
+//         </Toolbar>
+//       </AppBar>
+//       <Box sx={{ p: 3, mr: 30, ml: 30 }}>
+//         <Typography
+//           variant="h5"
+//           gutterBottom
+//           sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
+//         >
+//           Welcome to Vurvo. We use artificial intelligence to write essays.
+//           Create an account to begin. Your first essay is free, after that it
+//           costs $3 per month for up to 100 essays. An example prompt and essay
+//           is shown below.
+//         </Typography>
+//         <Typography
+//           variant="h6"
+//           fontWeight="bold"
+//           gutterBottom
+//           sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
+//         >
+//           Essay Inputs
+//         </Typography>
+//         <Box sx={{ p: 2 }}>
+//           <TextField
+//             required
+//             id="outlined-required"
+//             label="Prompt"
+//             defaultValue="Discuss the ways in which the Second Great Awakening and the Transcendentalist movement of the early 19th century influenced the development of American society and culture"
+//             fullWidth
+//             multiline
+//             rows={2}
+//           />
+//         </Box>
+//         <Box sx={{ p: 2 }}>
+//           <Grid
+//             container
+//             rowSpacing={1}
+//             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+//           >
+//             <Grid item xs={3}>
+//               <TextField
+//                 required
+//                 id="outlined-required"
+//                 label="Number of Words (Max 1,000)"
+//                 defaultValue="1000"
+//               />
+//             </Grid>
+//             <Grid item xs={9}>
+//               <TextField
+//                 required
+//                 id="outlined-required"
+//                 label="Style"
+//                 defaultValue="1000"
+//               />
+//             </Grid>
+//           </Grid>
+//         </Box>
+//         <Typography
+//           variant="h6"
+//           fontWeight="bold"
+//           gutterBottom
+//           sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
+//         >
+//           Essay
+//         </Typography>
+//         <Box sx={{ p: 2 }}>
+//           <TextField
+//             id="outlined-required"
+//             label="Essay"
+//             defaultValue="The Second Great Awakening and the Transcendentalist movement were two significant movements that emerged in the early 19th century and had a profound impact on the development of American society and culture.
 
-The Second Great Awakening was a religious revival movement that spread across the United States in the early 19th century. It was characterized by emotional and enthusiastic preaching, large revivals, and a focus on personal conversion and moral reform. The movement was led by a number of influential preachers, including Charles Grandison Finney and Lyman Beecher, who preached a message of salvation and redemption and called on people to turn away from sin and embrace a more virtuous lifestyle.
-The Second Great Awakening had a number of important consequences for American society. It helped to shape American Protestantism and contributed to the growth of various Protestant denominations, including the Methodists and Baptists. It also encouraged people to work towards social reform, as many participants in the movement believed that they had a moral obligation to improve the world around them. This led to the emergence of various reform movements, including the temperance movement, the abolition movement, and the women's rights movement.
+// The Second Great Awakening was a religious revival movement that spread across the United States in the early 19th century. It was characterized by emotional and enthusiastic preaching, large revivals, and a focus on personal conversion and moral reform. The movement was led by a number of influential preachers, including Charles Grandison Finney and Lyman Beecher, who preached a message of salvation and redemption and called on people to turn away from sin and embrace a more virtuous lifestyle.
+// The Second Great Awakening had a number of important consequences for American society. It helped to shape American Protestantism and contributed to the growth of various Protestant denominations, including the Methodists and Baptists. It also encouraged people to work towards social reform, as many participants in the movement believed that they had a moral obligation to improve the world around them. This led to the emergence of various reform movements, including the temperance movement, the abolition movement, and the women's rights movement.
 
-The Transcendentalist movement, on the other hand, was a philosophical and literary movement that emerged in the mid-19th century. Transcendentalists believed in the inherent goodness of people and the power of individual intuition and reason. They rejected traditional institutions and instead emphasized the importance of nature and the individual experience. The movement was led by a number of influential figures, including Ralph Waldo Emerson and Henry David Thoreau, who wrote about the importance of self-reliance, individualism, and the value of nature."
-            fullWidth
-            multiline
-            rows={14}
-          />
-        </Box>
-      </Box>
-    </Box>
-  );
-}
+// The Transcendentalist movement, on the other hand, was a philosophical and literary movement that emerged in the mid-19th century. Transcendentalists believed in the inherent goodness of people and the power of individual intuition and reason. They rejected traditional institutions and instead emphasized the importance of nature and the individual experience. The movement was led by a number of influential figures, including Ralph Waldo Emerson and Henry David Thoreau, who wrote about the importance of self-reliance, individualism, and the value of nature."
+//             fullWidth
+//             multiline
+//             rows={14}
+//           />
+//         </Box>
+//       </Box>
+//     </Box>
+//   );
+// }
 
 // export const getServerSideProps = withAuthRequired();
 
