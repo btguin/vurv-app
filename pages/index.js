@@ -31,6 +31,7 @@ import { Auth0Client } from "@auth0/auth0-spa-js";
 
 async function generateCompletions() {
     const apiKey = process.env.OPENAI_API_KEY;
+    console.log(apiKey);
     const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
