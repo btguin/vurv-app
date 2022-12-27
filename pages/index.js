@@ -48,7 +48,7 @@ import { Auth0Client } from '@auth0/auth0-spa-js';
 
 // const Index = ({ user }) => {
 export default function Index() {
-return (<a href="/api/auth/login">Login</a>);
+return <a href="/api/auth/login">Login</a>;
 }
 
 
