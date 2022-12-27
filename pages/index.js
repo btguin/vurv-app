@@ -28,9 +28,9 @@ import { Auth0Client } from "@auth0/auth0-spa-js";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-const apiKey = process.env.OPENAI_API_KEY;
 
 async function generateCompletions() {
+    const apiKey = process.env.OPENAI_API_KEY;
     const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
