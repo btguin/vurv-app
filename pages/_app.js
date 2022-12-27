@@ -19,13 +19,13 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <UserProvider>
       {/* <CacheProvider value={emotionCache}> */}
-        {/* <Head>
+        <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head> */}
-        {/* <ThemeProvider theme={theme}> */}
-          {/* <CssBaseline /> */}
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Component {...pageProps} />
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       {/* </CacheProvider> */}
     </UserProvider>
   );
