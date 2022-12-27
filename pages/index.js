@@ -18,8 +18,7 @@ import { getSupabase } from "../utils/supabase";
 import { useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
-import { Auth0Client } from '@auth0/auth0-spa-js';
-
+import { Auth0Client } from "@auth0/auth0-spa-js";
 
 // const configuration = new Configuration({
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
@@ -48,30 +47,44 @@ import { Auth0Client } from '@auth0/auth0-spa-js';
 
 // const Index = ({ user }) => {
 export default function Index() {
-return <a href="/api/auth/login">Login</a>;
+    const { user, error, isLoading } = useUser();
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error.message}</div>;
+  
+    return (
+        user && (
+            <div>
+            <a href="/api/auth/login">Login</a>
+            <a href="/api/auth/logout">Logout</a>
+              <img src={user.picture} alt={user.name} />
+              <h2>{user.name}</h2>
+              <p>{user.email}</p>
+            </div>
+        )
+  );
 }
 
+// const auth0 = new Auth0Client({
+//     domain: 'dev-f3qddlxasfyqhf1a.us.auth0.com',
+//     clientId: 'kRbyYycOXrZao3JcSNKSfTqMchishmuG'
+//   });
 
-    // const auth0 = new Auth0Client({
-    //     domain: 'dev-f3qddlxasfyqhf1a.us.auth0.com',
-    //     clientId: 'kRbyYycOXrZao3JcSNKSfTqMchishmuG'
-    //   });
+// generateCompletions();
 
-  // generateCompletions();
+//   const [todos, setTodos] = useState([]);
 
-  //   const [todos, setTodos] = useState([]);
+//     const supabase = getSupabase(user.accessToken);
 
-  //     const supabase = getSupabase(user.accessToken);
+//     useEffect(() => {
+//       const fetchTodos = async () => {
+//         const { data } = await supabase.from("todo").select("*");
+//         setTodos(data);
+//       };
 
-  //     useEffect(() => {
-  //       const fetchTodos = async () => {
-  //         const { data } = await supabase.from("todo").select("*");
-  //         setTodos(data);
-  //       };
-
-  //       fetchTodos();
-  //     }, []);
-  //   }
+//       fetchTodos();
+//     }, []);
+//   }
 
 //   return (
 //     <Box sx={{ flexGrow: 1 }}>
