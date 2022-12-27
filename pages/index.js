@@ -95,7 +95,7 @@ export default function Index() {
           {/* )} */}
           {/* {!user && ( */}
           <Box>
-            <Button
+            {/* <Button
               variant="text"
               color="primary"
               onClick={async () => {
@@ -111,7 +111,8 @@ export default function Index() {
               sx={{ m: 1 }}
             >
               LOG IN
-            </Button>
+            </Button> */}
+            <a href="/api/auth/login">Login</a>
             <Button
               variant="contained"
               color="primary"
