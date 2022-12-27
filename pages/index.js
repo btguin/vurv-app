@@ -33,7 +33,7 @@ async function generateCompletions() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': 'Bearer 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'
       },
       body: JSON.stringify({
         model: 'text-davinci-003',
