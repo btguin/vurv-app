@@ -48,10 +48,10 @@ import { Auth0Client } from '@auth0/auth0-spa-js';
 
 // const Index = ({ user }) => {
 export default function Index() {
-    const auth0 = new Auth0Client({
-        domain: 'dev-f3qddlxasfyqhf1a.us.auth0.com',
-        clientId: 'kRbyYycOXrZao3JcSNKSfTqMchishmuG'
-      });
+    // const auth0 = new Auth0Client({
+    //     domain: 'dev-f3qddlxasfyqhf1a.us.auth0.com',
+    //     clientId: 'kRbyYycOXrZao3JcSNKSfTqMchishmuG'
+    //   });
 
   // generateCompletions();
   //   const { user, error, isLoading } = useUser();
