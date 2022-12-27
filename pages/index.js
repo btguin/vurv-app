@@ -95,13 +95,13 @@ export default function Index() {
           {/* )} */}
           {/* {!user && ( */}
           <Box>
-            {/* <Button
+            <Button
               variant="text"
               color="primary"
               onClick={async () => {
                 await auth0.loginWithRedirect({
                   authorizationParams: {
-                    redirect_uri: "https://vurv-app.vercel.app/"
+                    redirect_uri: "https://vurv-app.vercel.app/api/auth/callback"
                   },
                 });
                 // logged in. you can get the user profile like this:
@@ -111,8 +111,8 @@ export default function Index() {
               sx={{ m: 1 }}
             >
               LOG IN
-            </Button> */}
-            <a href="/api/auth/login">Login</a>
+            </Button>
+            {/* <a href="/api/auth/login">Login</a> */}
             <Button
               variant="contained"
               color="primary"
