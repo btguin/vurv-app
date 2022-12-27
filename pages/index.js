@@ -54,9 +54,20 @@ export default function Index() {
     //   });
 
   // generateCompletions();
-  //   const { user, error, isLoading } = useUser();
-  //   if (isLoading) return <div>Loading...</div>;
-  //   if (error) return <div>{error.message}</div>;
+    const { user, error, isLoading } = useUser();
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error.message}</div>;
+
+    if (user) {
+        return (
+          <div>
+            Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
+          </div>
+        );
+      }
+
+      return <a href="/api/auth/login">Login</a>;
+
   //   const [todos, setTodos] = useState([]);
 
   //     const supabase = getSupabase(user.accessToken);
@@ -112,7 +123,7 @@ export default function Index() {
             >
               LOG IN
             </Button> */}
-            <a href="/api/auth/login">Login</a>
+            {/* <a href="/api/auth/login">Login</a> */}
             <Button
               variant="contained"
               color="primary"
