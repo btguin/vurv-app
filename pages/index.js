@@ -24,48 +24,35 @@ import { Auth0Client } from "@auth0/auth0-spa-js";
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
 //     apiKey: process.env.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,
 // });
+
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-// async function generateCompletions() {
-//     const response = await fetch('https://api.openai.com/v1/completions', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer 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'
-//       },
-//       body: JSON.stringify({
-//         model: 'text-davinci-003',
-//         prompt: 'Say this is a test',
-//         temperature: 0,
-//         max_tokens: 7
-//       })
-//     });
-//     const data = await response.json();
-//     console.log(data);
-//   }
+async function generateCompletions() {
+    const response = await fetch('https://api.openai.com/v1/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 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'
+      },
+      body: JSON.stringify({
+        model: 'text-davinci-003',
+        prompt: 'Say this is a test',
+        temperature: 0,
+        max_tokens: 7
+      })
+    });
+    const data = await response.json();
+    console.log(data);
+  }
 
-// const Index = ({ user }) => {
 export default function Index() {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
-  //     if (!user) return <div><a href="/api/auth/login">Login</a></div>;
 
-  //     return (
-  //         user && (
-  //             <div>
-  //             <a href="/api/auth/logout">Logout</a>
-  //               <img src={user.picture} alt={user.name} />
-  //               <h2>{user.name}</h2>
-  //               <p>{user.email}</p>
-  //             </div>
-  //         )
-  //   );
-  // }
-
-  // generateCompletions();
+  generateCompletions();
 
   //   const [todos, setTodos] = useState([]);
 
@@ -104,9 +91,17 @@ export default function Index() {
               LOG OUT
             </Button>
           )}
-          {/* {!user && ( */}
           <Box>
-            {!user && <a href="/api/auth/login">Login</a>}
+            {!user && (
+              <Button
+                variant="text"
+                color="primary"
+                href="/api/auth/login"
+                sx={{ m: 1 }}
+              >
+                LOG IN
+              </Button>
+            )}
             {!user && (
               <Button
                 variant="contained"
@@ -118,7 +113,6 @@ export default function Index() {
               </Button>
             )}
           </Box>
-          {/* )} */}
         </Toolbar>
       </AppBar>
       <Box sx={{ p: 3, mr: 30, ml: 30 }}>
