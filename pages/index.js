@@ -20,20 +20,22 @@ import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 
-const configuration = new Configuration({
-    organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
-    apiKey: 'process.env.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'
-});
+// const configuration = new Configuration({
+//     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
+//     apiKey: 'process.env.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'
+// });
 
-const openai = new OpenAIApi(configuration);
-const response = await openai.listEngines();
+// const openai = new OpenAIApi(configuration);
+// const response = await openai.listEngines();
+
+const apiKey = process.env.OPENAI_API_KEY;
 
 async function generateCompletions() {
     const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
         model: 'text-davinci-003',
