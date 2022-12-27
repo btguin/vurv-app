@@ -48,26 +48,16 @@ import { Auth0Client } from '@auth0/auth0-spa-js';
 
 // const Index = ({ user }) => {
 export default function Index() {
+return (<a href="/api/auth/login">Login</a>);
+}
+
+
     // const auth0 = new Auth0Client({
     //     domain: 'dev-f3qddlxasfyqhf1a.us.auth0.com',
     //     clientId: 'kRbyYycOXrZao3JcSNKSfTqMchishmuG'
     //   });
 
   // generateCompletions();
-    const { user, error, isLoading } = useUser();
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>{error.message}</div>;
-
-    if (user) {
-        return (
-          <div>
-            Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
-          </div>
-        );
-      }
-
-      return <a href="/api/auth/login">Login</a>;
-    }
 
   //   const [todos, setTodos] = useState([]);
 
@@ -124,7 +114,7 @@ export default function Index() {
 //             >
 //               LOG IN
 //             </Button> */}
-//             {/* <a href="/api/auth/login">Login</a> */}
+//             <a href="/api/auth/login">Login</a>
 //             <Button
 //               variant="contained"
 //               color="primary"
@@ -220,5 +210,3 @@ export default function Index() {
 // }
 
 // export const getServerSideProps = withAuthRequired();
-
-// export default Index;
