@@ -115,7 +115,7 @@ export default function Index() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box sx={{ p: 3, mr: 30, ml: 30 }}>
+      <Box sx={{ p: 3 }}>
         <Typography
           variant="h5"
           gutterBottom
