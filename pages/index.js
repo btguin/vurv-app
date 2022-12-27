@@ -20,20 +20,20 @@ import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 
-// const configuration = new Configuration({
-//     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
-//     apiKey: process.env.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,
-// });
+const configuration = new Configuration({
+    organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
+    apiKey: 'process.env.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'
+});
 
-// const openai = new OpenAIApi(configuration);
-// const response = await openai.listEngines();
+const openai = new OpenAIApi(configuration);
+const response = await openai.listEngines();
 
 async function generateCompletions() {
     const response = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': 'Bearer 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'
       },
       body: JSON.stringify({
         model: 'text-davinci-003',
@@ -128,7 +128,7 @@ export default function Index() {
         </Typography>
         <Typography
           variant="h6"
-          fontWeight="bold"
+        //   fontWeight="bold"
           gutterBottom
           sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
@@ -171,7 +171,7 @@ export default function Index() {
         </Box>
         <Typography
           variant="h6"
-          fontWeight="bold"
+        //   fontWeight="bold"
           gutterBottom
           sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
