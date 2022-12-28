@@ -30,7 +30,7 @@ import { FormControlUnstyledContext } from "@mui/base";
 // const response = await openai.listEngines();
 
 async function generateCompletions() {
-  console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
+  console.log("test" + process.env.NEXT_PUBLIC_OPENAI_API_KEY);
   const response = await fetch("https://api.openai.com/v1/completions", {
     method: "POST",
     headers: {
