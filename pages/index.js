@@ -29,8 +29,7 @@ import { FormControlUnstyledContext } from "@mui/base";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-async function generateCompletions() {
-  console.log("test" + process.env.NEXT_PUBLIC_OPENAI_API_KEY);
+async function generateCompletions(thePrompt, numTokens) {
   const response = await fetch("https://api.openai.com/v1/completions", {
     method: "POST",
     headers: {
@@ -39,9 +38,9 @@ async function generateCompletions() {
     },
     body: JSON.stringify({
       model: "text-davinci-003",
-      prompt: "Say this is a test",
+      prompt: thePrompt,
       temperature: 0,
-      max_tokens: 7,
+      max_tokens: numTokens,
     }),
   });
   const data = await response.json();
@@ -54,7 +53,6 @@ export default function Index() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  generateCompletions();
 
   //   const [todos, setTodos] = useState([]);
 
@@ -136,7 +134,7 @@ export default function Index() {
         >
           Essay Inputs
         </Typography>
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 1 }}>
           <TextField
             required
             id="outlined-required"
@@ -147,7 +145,7 @@ export default function Index() {
             rows={2}
           />
         </Box>
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 1 }}>
           <Grid
             container
             rowSpacing={1}
@@ -162,14 +160,24 @@ export default function Index() {
               />
             </Grid>
             <Grid item xs={9}>
-              <TextField
+              {/* <TextField
                 required
                 id="outlined-required"
                 label="Style"
                 defaultValue="1000"
-              />
+              /> */}
             </Grid>
           </Grid>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ mt: 2, mb: 1 }}
+            onClick={() => {
+                generateCompletions("test prompt", 7);
+            }}
+          >
+            CREATE ESSAY
+          </Button>
         </Box>
         <Typography
           variant="h6"
