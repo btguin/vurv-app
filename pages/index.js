@@ -40,7 +40,7 @@ async function generateCompletions(thePrompt, numTokens) {
       model: "text-davinci-003",
       prompt: thePrompt,
       temperature: 0,
-      max_tokens: numTokens,
+      max_tokens: parseInt(numTokens, 10),
     }),
   });
   const data = await response.json();
