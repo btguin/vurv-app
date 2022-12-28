@@ -44,13 +44,15 @@ async function generateCompletions(thePrompt, numTokens) {
     }),
   });
   const data = await response.json();
-  console.log(data);
+  console.log(data.choices[0].text);
+  setResponse(data.choices[0].text);
 }
 
 export default function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
+  const [response, setResponse] = useState('');
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -200,12 +202,13 @@ export default function Index() {
           <TextField
             id="outlined-required"
             label="Essay"
-            defaultValue="The Second Great Awakening and the Transcendentalist movement were two significant movements that emerged in the early 19th century and had a profound impact on the development of American society and culture.
+            value={response}
+//             defaultValue="The Second Great Awakening and the Transcendentalist movement were two significant movements that emerged in the early 19th century and had a profound impact on the development of American society and culture.
 
-The Second Great Awakening was a religious revival movement that spread across the United States in the early 19th century. It was characterized by emotional and enthusiastic preaching, large revivals, and a focus on personal conversion and moral reform. The movement was led by a number of influential preachers, including Charles Grandison Finney and Lyman Beecher, who preached a message of salvation and redemption and called on people to turn away from sin and embrace a more virtuous lifestyle.
-The Second Great Awakening had a number of important consequences for American society. It helped to shape American Protestantism and contributed to the growth of various Protestant denominations, including the Methodists and Baptists. It also encouraged people to work towards social reform, as many participants in the movement believed that they had a moral obligation to improve the world around them. This led to the emergence of various reform movements, including the temperance movement, the abolition movement, and the women's rights movement.
+// The Second Great Awakening was a religious revival movement that spread across the United States in the early 19th century. It was characterized by emotional and enthusiastic preaching, large revivals, and a focus on personal conversion and moral reform. The movement was led by a number of influential preachers, including Charles Grandison Finney and Lyman Beecher, who preached a message of salvation and redemption and called on people to turn away from sin and embrace a more virtuous lifestyle.
+// The Second Great Awakening had a number of important consequences for American society. It helped to shape American Protestantism and contributed to the growth of various Protestant denominations, including the Methodists and Baptists. It also encouraged people to work towards social reform, as many participants in the movement believed that they had a moral obligation to improve the world around them. This led to the emergence of various reform movements, including the temperance movement, the abolition movement, and the women's rights movement.
 
-The Transcendentalist movement, on the other hand, was a philosophical and literary movement that emerged in the mid-19th century. Transcendentalists believed in the inherent goodness of people and the power of individual intuition and reason. They rejected traditional institutions and instead emphasized the importance of nature and the individual experience. The movement was led by a number of influential figures, including Ralph Waldo Emerson and Henry David Thoreau, who wrote about the importance of self-reliance, individualism, and the value of nature."
+// The Transcendentalist movement, on the other hand, was a philosophical and literary movement that emerged in the mid-19th century. Transcendentalists believed in the inherent goodness of people and the power of individual intuition and reason. They rejected traditional institutions and instead emphasized the importance of nature and the individual experience. The movement was led by a number of influential figures, including Ralph Waldo Emerson and Henry David Thoreau, who wrote about the importance of self-reliance, individualism, and the value of nature."
             fullWidth
             multiline
             rows={14}
