@@ -49,10 +49,11 @@ async function generateCompletions(thePrompt, numTokens) {
 
 export default function Index() {
   const { user, error, isLoading } = useUser();
+  const [prompt, setPrompt] = useState(1000);
+  const [numWords, setNumWords] = useState(1000);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
-
 
   //   const [todos, setTodos] = useState([]);
 
@@ -139,10 +140,14 @@ export default function Index() {
             required
             id="outlined-required"
             label="Prompt"
-            defaultValue="Discuss the ways in which the Second Great Awakening and the Transcendentalist movement of the early 19th century influenced the development of American society and culture"
+            // defaultValue="Discuss the ways in which the Second Great Awakening and the Transcendentalist movement of the early 19th century influenced the development of American society and culture"
             fullWidth
             multiline
             rows={2}
+            onChange={(event) => {
+              setPrompt(event.target.value);
+              console.log(prompt);
+            }}
           />
         </Box>
         <Box sx={{ p: 1 }}>
@@ -156,7 +161,11 @@ export default function Index() {
                 required
                 id="outlined-required"
                 label="Number of Words (Max 1,000)"
-                defaultValue="1000"
+                // defaultValue="1000"
+                onChange={(event) => {
+              setNumWords(event.target.value);
+              console.log(numWords);
+            }}
               />
             </Grid>
             <Grid item xs={9}>
@@ -173,7 +182,7 @@ export default function Index() {
             color="primary"
             sx={{ mt: 2, mb: 1 }}
             onClick={() => {
-                generateCompletions("test prompt", 7);
+              generateCompletions(prompt, numWords);
             }}
           >
             CREATE ESSAY
