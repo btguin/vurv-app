@@ -29,24 +29,7 @@ import { FormControlUnstyledContext } from "@mui/base";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-async function generateCompletions(thePrompt, numTokens) {
-  const response = await fetch("https://api.openai.com/v1/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: "text-davinci-003",
-      prompt: thePrompt,
-      temperature: 0,
-      max_tokens: parseInt(numTokens, 10),
-    }),
-  });
-  const data = await response.json();
-  console.log(data.choices[0].text);
-  setResponse(data.choices[0].text);
-}
+
 
 export default function Index() {
   const { user, error, isLoading } = useUser();
@@ -56,6 +39,25 @@ export default function Index() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
+
+  async function generateCompletions(thePrompt, numTokens) {
+    const response = await fetch("https://api.openai.com/v1/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "text-davinci-003",
+        prompt: thePrompt,
+        temperature: 0,
+        max_tokens: parseInt(numTokens, 10),
+      }),
+    });
+    const data = await response.json();
+    console.log(data.choices[0].text);
+    setResponse(data.choices[0].text);
+  }
 
   //   const [todos, setTodos] = useState([]);
 
