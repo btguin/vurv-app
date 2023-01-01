@@ -17,8 +17,8 @@ export const raleway = Raleway({
 });
 
 export const unbounded = Unbounded({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
+//   weight: ["300", "400", "500", "700"],
+//   subsets: ["latin"],
   display: "swap",
   fallback: ["Helvetica", "Arial", "sans-serif"],
 });
