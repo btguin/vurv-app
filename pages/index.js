@@ -21,6 +21,8 @@ import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { FormControlUnstyledContext } from "@mui/base";
 import { ChatGPTAPIBrowser } from "chatgpt";
+import fs from 'fs';
+
 
 // const configuration = new Configuration({
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
