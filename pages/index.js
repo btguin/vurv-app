@@ -66,7 +66,7 @@ export default function Index() {
   }
 
   async function updateCredits() {
-    const { user } = useUser();
+    // const { user } = useUser();
     
     const response = await fetch(`https://vurv-app.vercel.app/api/v2/users/${user.sub}`, {
       method: "PATCH",
