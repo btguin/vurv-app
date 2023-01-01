@@ -30,7 +30,7 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-export default function Index() {
+export default function Index(props) {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
@@ -340,5 +340,15 @@ export default function Index() {
     </Box>
   );
 }
+
+export async function getServerSideProps(context) {
+    const { user } = await getPageAuthProps(context);
+  
+    return {
+      props: {
+        user,
+      },
+    };
+  }
 
 // export const getServerSideProps = withAuthRequired();
