@@ -187,7 +187,8 @@ export default function Index() {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
+            // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
+            sx={{ mb: 2 }}
           >
             Welcome to Vurvo. We use artificial intelligence to write essays.
             Create an account to begin. Your first essay is free, after that it
@@ -199,7 +200,8 @@ export default function Index() {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
+            // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
+            sx={{ mb: 2 }}
           >
             You have 1/1 essays remaining. Upgrade your account for $3 per month
             for up to 100 essays.
@@ -209,7 +211,7 @@ export default function Index() {
           variant="h6"
           //   fontWeight="bold"
           gutterBottom
-          sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
+        //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
           Essay Inputs
         </Typography>
@@ -304,7 +306,7 @@ export default function Index() {
           variant="h6"
           //   fontWeight="bold"
           gutterBottom
-          sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
+        //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
           Essay
         </Typography>
