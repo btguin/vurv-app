@@ -342,13 +342,12 @@ export default function Index(props) {
 }
 
 export async function getServerSideProps(context) {
-    const { user } = await getPageAuthProps(context);
+    // Call ChatGPTAPIBrowser function here
+    await generateCompletions();
   
     return {
       props: {
-        user,
+        user: context.user,
       },
     };
   }
-
-// export const getServerSideProps = withAuthRequired();
