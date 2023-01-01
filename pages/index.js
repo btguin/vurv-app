@@ -20,7 +20,7 @@ import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { FormControlUnstyledContext } from "@mui/base";
-// import { ChatGPTAPIBrowser } from 'chatgpt'
+import { ChatGPTAPIBrowser } from "chatgpt";
 
 // const configuration = new Configuration({
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
@@ -34,60 +34,71 @@ export default function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
-  const [response, setResponse] = useState("");
+  //   const [response, setResponse] = useState("");
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  //   async function generateCompletions() {
-  //     // use puppeteer to bypass cloudflare (headful because of captchas)
-  //     const api = new ChatGPTAPIBrowser({
-  //       email: process.env.OPENAI_EMAIL,
-  //       password: process.env.OPENAI_PASSWORD
-  //     })
-
-  async function generateCompletions(thePrompt, numTokens) {
-    const response = await fetch("https://api.openai.com/v1/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "text-davinci-003",
-        prompt: thePrompt,
-        temperature: 0,
-        max_tokens: parseInt(numTokens, 10),
-      }),
+  async function generateCompletions(thePrompt) {
+    // use puppeteer to bypass cloudflare (headful because of captchas)
+    const api = new ChatGPTAPIBrowser({
+      email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+      password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
     });
-    const data = await response.json();
-    console.log(data.choices[0].text);
-    setResponse(data.choices[0].text);
+    await api.initSession();
+
+    const result = await api.sendMessage("Hello World!");
+    console.log(result.response);
   }
+
+  //   async function generateCompletions(thePrompt, numTokens) {
+  //     const response = await fetch("https://api.openai.com/v1/completions", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+  //       },
+  //       body: JSON.stringify({
+  //         model: "text-davinci-003",
+  //         prompt: thePrompt,
+  //         temperature: 0,
+  //         max_tokens: parseInt(numTokens, 10),
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     console.log(data.choices[0].text);
+  //     setResponse(data.choices[0].text);
+  //   }
 
   async function updateCredits() {
     // const { user } = useUser();
-    
-    const response = await fetch(`https://vurv-app.vercel.app/api/v2/users/${user.sub}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${user.access_token}`,
-      },
-      body: JSON.stringify({
-        user_metadata: {
-          credits: "1 credit"
-        },
-      }),
-    });
-    
-    const updatedUser = await auth0.users.get({ id: user.sub }, {
+
+    const response = await fetch(
+      `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+      {
+        method: "PATCH",
         headers: {
-          Authorization: `Bearer ${user.access_token}`
-        }
-      });
-    
-      console.log(updatedUser.user_metadata.credits);
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user.access_token}`,
+        },
+        body: JSON.stringify({
+          user_metadata: {
+            credits: "1 credit",
+          },
+        }),
+      }
+    );
+
+    const updatedUser = await auth0.users.get(
+      { id: user.sub },
+      {
+        headers: {
+          Authorization: `Bearer ${user.access_token}`,
+        },
+      }
+    );
+
+    console.log(updatedUser.user_metadata.credits);
   }
 
   //   const [todos, setTodos] = useState([]);
@@ -282,7 +293,8 @@ export default function Index() {
             color="primary"
             sx={{ mt: 2, mb: 1 }}
             onClick={() => {
-              generateCompletions(prompt, numWords);
+              //   generateCompletions(prompt, numWords);
+              generateCompletions(prompt);
             }}
           >
             CREATE ESSAY
@@ -314,7 +326,7 @@ export default function Index() {
             <TextField
               id="outlined-disabled"
               label="Essay will populate here, no input required"
-              value={response}
+              //   value={response}
               multiline
               rows={14}
               fullWidth
