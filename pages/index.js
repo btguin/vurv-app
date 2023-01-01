@@ -30,6 +30,28 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
+function CompletionsGenerator() {
+  const [response, setResponse] = useState("");
+
+  useEffect(() => {
+    async function generateCompletions() {
+      const api = new ChatGPTAPIBrowser({
+        email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+        password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+      });
+      await api.initSession();
+
+      const result = await api.sendMessage("Hello World!");
+      console.log(result.response);
+      setResponse(result.response);
+    }
+
+    generateCompletions();
+  }, []);
+
+  return <div>{response}</div>;
+}
+
 export default function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
@@ -39,17 +61,17 @@ export default function Index() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-//   async function generateCompletions(thePrompt) {
-//     // use puppeteer to bypass cloudflare (headful because of captchas)
-//     const api = new ChatGPTAPIBrowser({
-//       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
-//       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
-//     });
-//     await api.initSession();
+  //   async function generateCompletions(thePrompt) {
+  //     // use puppeteer to bypass cloudflare (headful because of captchas)
+  //     const api = new ChatGPTAPIBrowser({
+  //       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+  //       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+  //     });
+  //     await api.initSession();
 
-//     const result = await api.sendMessage("Hello World!");
-//     console.log(result.response);
-//   }
+  //     const result = await api.sendMessage("Hello World!");
+  //     console.log(result.response);
+  //   }
 
   //   async function generateCompletions(thePrompt, numTokens) {
   //     const response = await fetch("https://api.openai.com/v1/completions", {
@@ -117,6 +139,8 @@ export default function Index() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <CompletionsGenerator />
+
       {/* {user && <p>{user.email}</p>}
       {todos?.length > 0 ? (
         todos.map((todo) => <p key={todo.id}>{todo.title}</p>)
@@ -211,7 +235,7 @@ export default function Index() {
           variant="h6"
           //   fontWeight="bold"
           gutterBottom
-        //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
+          //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
           Essay Inputs
         </Typography>
@@ -306,7 +330,7 @@ export default function Index() {
           variant="h6"
           //   fontWeight="bold"
           gutterBottom
-        //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
+          //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
           Essay
         </Typography>
@@ -340,3 +364,13 @@ export default function Index() {
     </Box>
   );
 }
+
+export async function getServerSideProps(context) {
+    const { user } = await getPageAuthProps(context);
+  
+    return {
+      props: {
+        user,
+      },
+    };
+  }
