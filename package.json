@@ -18,6 +18,7 @@
     "@next/font": "13.1.0",
     "@supabase/supabase-js": "^2.2.2",
     "chatgpt": "^3.3.9",
+    "chownr": "^2.0.0",
     "fs": "^0.0.1-security",
     "isomorphic-unfetch": "^3.1.0",
     "jsonwebtoken": "^9.0.0",
