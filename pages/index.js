@@ -30,7 +30,7 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-export default function Index(props) {
+export default function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
@@ -39,17 +39,17 @@ export default function Index(props) {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  async function generateCompletions(thePrompt) {
-    // use puppeteer to bypass cloudflare (headful because of captchas)
-    const api = new ChatGPTAPIBrowser({
-      email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
-      password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
-    });
-    await api.initSession();
+//   async function generateCompletions(thePrompt) {
+//     // use puppeteer to bypass cloudflare (headful because of captchas)
+//     const api = new ChatGPTAPIBrowser({
+//       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+//       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+//     });
+//     await api.initSession();
 
-    const result = await api.sendMessage("Hello World!");
-    console.log(result.response);
-  }
+//     const result = await api.sendMessage("Hello World!");
+//     console.log(result.response);
+//   }
 
   //   async function generateCompletions(thePrompt, numTokens) {
   //     const response = await fetch("https://api.openai.com/v1/completions", {
@@ -294,10 +294,10 @@ export default function Index(props) {
             variant="contained"
             color="primary"
             sx={{ mt: 2, mb: 1 }}
-            onClick={() => {
-              //   generateCompletions(prompt, numWords);
-              generateCompletions(prompt);
-            }}
+            // onClick={() => {
+            //   //   generateCompletions(prompt, numWords);
+            //   generateCompletions(prompt);
+            // }}
           >
             CREATE ESSAY
           </Button>
@@ -340,14 +340,3 @@ export default function Index(props) {
     </Box>
   );
 }
-
-export async function getServerSideProps(context) {
-    // Call ChatGPTAPIBrowser function here
-    await generateCompletions();
-  
-    return {
-      props: {
-        user: context.user,
-      },
-    };
-  }
