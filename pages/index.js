@@ -32,7 +32,7 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const response = await openai.listEngines();
 
 
-function Index({chatGPTData}) {
+function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
