@@ -62,25 +62,26 @@ function Index() {
     }
 
   async function updateCredits() {
-    // const { user } = useUser();
+    const { user } = useUser();
 
+    console.log(user.email);
     console.log(user.sub);
 
-    // const response = await fetch(
-    //   `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
-    //   {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       authorization: `Bearer ${user.access_token}`,
-    //     },
-    //     body: JSON.stringify({
-    //       user_metadata: {
-    //         credits: "1 credit",
-    //       },
-    //     }),
-    //   }
-    // );
+    const response = await fetch(
+      `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user.access_token}`,
+        },
+        body: JSON.stringify({
+          user_metadata: {
+            credits: "1 credit",
+          },
+        }),
+      }
+    );
 
     // const updatedUser = await auth0.users.get(
     //   { id: user.sub },
@@ -93,20 +94,6 @@ function Index() {
 
     // console.log(updatedUser.user_metadata.credits);
   }
-
-  //   const [todos, setTodos] = useState([]);
-
-  //     const supabase = getSupabase(user.accessToken);
-
-  //     useEffect(() => {
-  //       const fetchTodos = async () => {
-  //         const { data } = await supabase.from("todo").select("*");
-  //         setTodos(data);
-  //       };
-
-  //       fetchTodos();
-  //     }, []);
-  //   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
