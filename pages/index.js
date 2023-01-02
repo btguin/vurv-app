@@ -31,14 +31,13 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-function Index({ chatGPTData, error }) {
+function Index({ chatGPTData, errorMessage }) {
     // If there was an error, log it to the console
-    if (error) {
-      console.error(error);
-    }
-  
+   
+    console.log(errorMessage);
+
     console.log(chatGPTData);
-    
+
 // function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
@@ -370,10 +369,10 @@ export async function getServerSideProps(context) {
       };
     } catch (error) {
       // Handle error and return a proper response to the client
-      console.error(error);
+      console.log(error);
       return {
         props: {
-          error: error.message,
+          errorMessage: error.message,
         },
       };
     }
