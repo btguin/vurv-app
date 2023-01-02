@@ -20,7 +20,7 @@ import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { FormControlUnstyledContext } from "@mui/base";
-import { ChatGPTAPIBrowser } from "chatgpt";
+// import { ChatGPTAPIBrowser } from "chatgpt";
 
 
 // const configuration = new Configuration({
@@ -108,12 +108,6 @@ function Index() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* {user && <p>{user.email}</p>}
-      {todos?.length > 0 ? (
-        todos.map((todo) => <p key={todo.id}>{todo.title}</p>)
-      ) : (
-        <p>You don't have any todos</p>
-      )} */}
       <AppBar position="static" color="secondary">
         <Toolbar>
           <img src="/unboundedLogo.svg" alt="A description of the image" />
