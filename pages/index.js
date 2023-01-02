@@ -21,6 +21,7 @@ import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { FormControlUnstyledContext } from "@mui/base";
 // import { ChatGPTAPIBrowser } from "chatgpt";
+import axios from 'axios';
 
 
 // const configuration = new Configuration({
@@ -62,33 +63,43 @@ function Index() {
     }
 
   async function updateCredits() {
-    // const { user } = useUser();
+    var axios = require("axios").default;
 
-    console.log(user.email);
-    console.log(user.sub);
-
-    try {
-        const response = await fetch(
-          `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `Bearer ${user.access_token}`,
-            },
-            body: JSON.stringify({
-              user_metadata: {
-                credits: "1 credit",
-              },
-            }),
-          }
-        );
+    var options = {
+      method: 'PATCH',
+      url: `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+      headers: {authorization: `Bearer ${user.access_token}`, 'content-type': 'application/json'},
+      data: {user_metadata: {addresses: {home: '123 Main Street, Anytown, ST 12345'}}}
+    };
     
-        const responseBody = await response.json();
-        console.log(responseBody);
-      } catch (error) {
-        console.error(error);
-      }
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+
+    // try {
+    //     const response = await fetch(
+    //       `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+    //       {
+    //         method: "PATCH",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           authorization: `Bearer ${user.access_token}`,
+    //         },
+    //         body: JSON.stringify({
+    //           user_metadata: {
+    //             credits: "1 credit",
+    //           },
+    //         }),
+    //       }
+    //     );
+    
+    //     const responseBody = await response.json();
+    //     console.log(responseBody);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
 
     // const updatedUser = await auth0.users.get(
     //   { id: user.sub },

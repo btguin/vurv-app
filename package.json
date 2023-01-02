@@ -17,6 +17,7 @@
     "@mui/material": "^5.11.1",
     "@next/font": "13.1.0",
     "@supabase/supabase-js": "^2.2.2",
+    "axios": "^1.2.2",
     "chatgpt": "^3.3.9",
     "chownr": "^2.0.0",
     "clone-deep": "^4.0.1",
