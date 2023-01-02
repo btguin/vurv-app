@@ -343,21 +343,23 @@ function Index() {
   );
 }
 
-// export async function getServerSideProps(context) {
-//     const api = new ChatGPTAPIBrowser({
-//       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
-//       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
-//     });
-//     await api.initSession();
+export async function getServerSideProps(context) {
+    const api = new ChatGPTAPIBrowser({
+      email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+      password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+    });
+    // await api.initSession();
   
-//     const result = await api.sendMessage("Hello World!");
-//     console.log(result.response);
+    // const result = await api.sendMessage("Hello World!");
+    // console.log(result.response);
   
-//     return {
-//       props: {
-//         chatGPTData: result.response,
-//       },
-//     };
-//   }
+    return {
+      props: {
+        // chatGPTData: result.response,
+        chatGPTData: "test",
+
+      },
+    };
+  }
 
   export default Index;
