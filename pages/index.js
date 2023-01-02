@@ -32,29 +32,8 @@ import fs from 'fs';
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-function CompletionsGenerator() {
-  const [response, setResponse] = useState("");
 
-  useEffect(() => {
-    async function generateCompletions() {
-      const api = new ChatGPTAPIBrowser({
-        email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
-        password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
-      });
-      await api.initSession();
-
-      const result = await api.sendMessage("Hello World!");
-      console.log(result.response);
-      setResponse(result.response);
-    }
-
-    generateCompletions();
-  }, []);
-
-  return <div>{response}</div>;
-}
-
-export default function Index() {
+function Index({chatGPTData}) {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
@@ -141,8 +120,6 @@ export default function Index() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <CompletionsGenerator />
-
       {/* {user && <p>{user.email}</p>}
       {todos?.length > 0 ? (
         todos.map((todo) => <p key={todo.id}>{todo.title}</p>)
@@ -367,12 +344,21 @@ export default function Index() {
   );
 }
 
-export async function getServerSideProps(context) {
-    const { user } = await getPageAuthProps(context);
+export async function getServerSideProps() {
+    const api = new ChatGPTAPIBrowser({
+      email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+      password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+    });
+    await api.initSession();
+  
+    const result = await api.sendMessage("Hello World!");
+    console.log(result.response);
   
     return {
       props: {
-        user,
+        chatGPTData: result.response,
       },
     };
   }
+
+  export default Index;
