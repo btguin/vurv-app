@@ -20,7 +20,7 @@ import { Configuration, OpenAIApi } from "openai";
 import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { FormControlUnstyledContext } from "@mui/base";
-import { ChatGPTAPIBrowser } from "chatgpt";
+// import { ChatGPTAPIBrowser } from "chatgpt";
 
 
 // const configuration = new Configuration({
@@ -31,7 +31,7 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-
+// function Index({ chatGPTData }) {
 function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
@@ -343,21 +343,21 @@ function Index() {
   );
 }
 
-export async function getServerSideProps(context) {
-    const api = new ChatGPTAPIBrowser({
-      email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
-      password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
-    });
-    await api.initSession();
+// export async function getServerSideProps(context) {
+//     const api = new ChatGPTAPIBrowser({
+//       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+//       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+//     });
+//     await api.initSession();
   
-    const result = await api.sendMessage("Hello World!");
-    console.log(result.response);
+//     const result = await api.sendMessage("Hello World!");
+//     console.log(result.response);
   
-    return {
-      props: {
-        chatGPTData: result.response,
-      },
-    };
-  }
+//     return {
+//       props: {
+//         chatGPTData: result.response,
+//       },
+//     };
+//   }
 
   export default Index;
