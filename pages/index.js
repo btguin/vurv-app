@@ -62,7 +62,7 @@ function Index() {
     }
 
   async function updateCredits() {
-    const { user } = useUser();
+    // const { user } = useUser();
 
     console.log(user.email);
     console.log(user.sub);
@@ -82,6 +82,8 @@ function Index() {
         }),
       }
     );
+
+    console.log(response);
 
     // const updatedUser = await auth0.users.get(
     //   { id: user.sub },
