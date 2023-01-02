@@ -29,6 +29,7 @@
     "openai": "^3.1.0",
     "openid-client": "^5.3.1",
     "puppeteer": "^19.4.1",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "v8": "^0.1.0"
