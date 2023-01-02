@@ -352,9 +352,9 @@ export async function getServerSideProps(context) {
       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
     });
-    await api.initSession();
+    // await api.initSession();
   
-    const result = await api.sendMessage("Hello World!");
+    // const result = await api.sendMessage("Hello World!");
   
     return {
       props: {
