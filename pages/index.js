@@ -358,7 +358,8 @@ export async function getServerSideProps(context) {
   
     return {
       props: {
-        chatGPTData: result.response,
+        // chatGPTData: result.response,
+        chatGPTData: "test",
       },
     };
   }
