@@ -67,27 +67,29 @@ function Index() {
     console.log(user.email);
     console.log(user.sub);
 
-    const response = await fetch(
-      `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user.access_token}`,
-        },
-        body: JSON.stringify({
-          user_metadata: {
-            credits: "1 credit",
-          },
-        }),
+    try {
+        const response = await fetch(
+          `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${user.access_token}`,
+            },
+            body: JSON.stringify({
+              user_metadata: {
+                credits: "1 credit",
+              },
+            }),
+          }
+        );
+    
+        const responseBody = await response.json();
+        console.log(responseBody);
+      } catch (error) {
+        console.error(error);
       }
-    );
 
-    if (!response.ok) {
-        const errorBody = await response.text();
-        console.log(errorBody);
-      }
-      
     // const updatedUser = await auth0.users.get(
     //   { id: user.sub },
     //   {
