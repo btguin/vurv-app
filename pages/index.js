@@ -31,8 +31,8 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-// function Index({ chatGPTData }) {
-function Index() {
+function Index({ chatGPTData }) {
+// function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
@@ -40,6 +40,10 @@ function Index() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
+
+  console.log(chatGPTData);
+
+
 
   //   async function generateCompletions(thePrompt) {
   //     // use puppeteer to bypass cloudflare (headful because of captchas)
@@ -348,16 +352,13 @@ export async function getServerSideProps(context) {
       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
     });
-    // await api.initSession();
+    await api.initSession();
   
-    // const result = await api.sendMessage("Hello World!");
-    // console.log(result.response);
+    const result = await api.sendMessage("Hello World!");
   
     return {
       props: {
-        // chatGPTData: result.response,
-        chatGPTData: "test",
-
+        chatGPTData: result.response,
       },
     };
   }
