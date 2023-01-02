@@ -344,7 +344,7 @@ function Index({chatGPTData}) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
     const api = new ChatGPTAPIBrowser({
       email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
       password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
