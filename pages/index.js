@@ -64,32 +64,34 @@ function Index() {
   async function updateCredits() {
     // const { user } = useUser();
 
-    const response = await fetch(
-      `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user.access_token}`,
-        },
-        body: JSON.stringify({
-          user_metadata: {
-            credits: "1 credit",
-          },
-        }),
-      }
-    );
+    console.log(user.sub);
 
-    const updatedUser = await auth0.users.get(
-      { id: user.sub },
-      {
-        headers: {
-          Authorization: `Bearer ${user.access_token}`,
-        },
-      }
-    );
+    // const response = await fetch(
+    //   `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+    //   {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       authorization: `Bearer ${user.access_token}`,
+    //     },
+    //     body: JSON.stringify({
+    //       user_metadata: {
+    //         credits: "1 credit",
+    //       },
+    //     }),
+    //   }
+    // );
 
-    console.log(updatedUser.user_metadata.credits);
+    // const updatedUser = await auth0.users.get(
+    //   { id: user.sub },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${user.access_token}`,
+    //     },
+    //   }
+    // );
+
+    // console.log(updatedUser.user_metadata.credits);
   }
 
   //   const [todos, setTodos] = useState([]);
