@@ -31,7 +31,14 @@ import { ChatGPTAPIBrowser } from "chatgpt";
 // const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
 
-function Index({ chatGPTData }) {
+function Index({ chatGPTData, error }) {
+    // If there was an error, log it to the console
+    if (error) {
+      console.error(error);
+    }
+  
+    console.log(chatGPTData);
+    
 // function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
@@ -41,7 +48,6 @@ function Index({ chatGPTData }) {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  console.log(chatGPTData);
 
 
 
