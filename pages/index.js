@@ -83,8 +83,11 @@ function Index() {
       }
     );
 
-    console.log(response);
-
+    if (!response.ok) {
+        const errorBody = await response.text();
+        console.log(errorBody);
+      }
+      
     // const updatedUser = await auth0.users.get(
     //   { id: user.sub },
     //   {
