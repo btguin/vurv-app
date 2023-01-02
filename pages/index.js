@@ -348,20 +348,30 @@ function Index({ chatGPTData }) {
 }
 
 export async function getServerSideProps(context) {
-    const api = new ChatGPTAPIBrowser({
-      email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
-      password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
-    });
-    // await api.initSession();
+    try {
+      // Call ChatGPTAPIBrowser and retrieve data
+      const api = new ChatGPTAPIBrowser({
+        email: process.env.NEXT_PUBLIC_OPENAI_EMAIL,
+        password: process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+      });
+      await api.initSession();
+      const result = await api.sendMessage("Hello World!");
   
-    // const result = await api.sendMessage("Hello World!");
-  
-    return {
-      props: {
-        // chatGPTData: result.response,
-        chatGPTData: "test",
-      },
-    };
+      return {
+        props: {
+          chatGPTData: result.response,
+        },
+      };
+    } catch (error) {
+      // Handle error and return a proper response to the client
+      console.error(error);
+      return {
+        props: {
+          error: error.message,
+        },
+      };
+    }
   }
+  
 
   export default Index;
