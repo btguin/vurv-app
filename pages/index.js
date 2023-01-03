@@ -21,8 +21,7 @@ import fetch from "isomorphic-unfetch";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { FormControlUnstyledContext } from "@mui/base";
 // import { ChatGPTAPIBrowser } from "chatgpt";
-import axios from 'axios';
-
+import axios from "axios";
 
 // const configuration = new Configuration({
 //     organization: "org-scajRwEd9QcqjN9BrvZ2Mvv1",
@@ -34,7 +33,6 @@ import axios from 'axios';
 
 // function Index({ chatGPTData, errorMessage }) {
 function Index() {
-
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
@@ -43,40 +41,50 @@ function Index() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-    async function generateCompletions(thePrompt, numTokens) {
-      const response = await fetch("https://api.openai.com/v1/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "text-davinci-003",
-          prompt: thePrompt,
-          temperature: 0,
-          max_tokens: parseInt(numTokens, 10),
-        }),
-      });
-      const data = await response.json();
-      console.log(data.choices[0].text);
-      setResponse(data.choices[0].text);
-    }
+  async function generateCompletions(thePrompt, numTokens) {
+    const response = await fetch("https://api.openai.com/v1/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "text-davinci-003",
+        prompt: thePrompt,
+        temperature: 0,
+        max_tokens: parseInt(numTokens, 10),
+      }),
+    });
+    const data = await response.json();
+    console.log(data.choices[0].text);
+    setResponse(data.choices[0].text);
+  }
 
   async function updateCredits() {
     var axios = require("axios").default;
 
     var options = {
-      method: 'PATCH',
-      url: `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
-      headers: {authorization: `Bearer ${user.access_token}`, 'content-type': 'application/json'},
-      data: {user_metadata: {addresses: {home: '123 Main Street, Anytown, ST 12345'}}}
+      method: "PATCH",
+      url: `/api/v2/users/${user.sub}`,
+      headers: {
+        authorization: `Bearer ${user.access_token}123`,
+        "content-type": "application/json",
+      },
+      data: {
+        user_metadata: {
+          addresses: { home: "123 Main Street, Anytown, ST 12345" },
+        },
+      },
     };
-    
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
 
     // try {
     //     const response = await fetch(
@@ -94,7 +102,7 @@ function Index() {
     //         }),
     //       }
     //     );
-    
+
     //     const responseBody = await response.json();
     //     console.log(responseBody);
     //   } catch (error) {
@@ -342,7 +350,7 @@ function Index() {
 //       });
 //       await api.initSession();
 //       const result = await api.sendMessage("Hello World!");
-  
+
 //       return {
 //         props: {
 //           chatGPTData: result.response,
@@ -358,6 +366,5 @@ function Index() {
 //       };
 //     }
 //   }
-  
 
-  export default Index;
+export default Index;
