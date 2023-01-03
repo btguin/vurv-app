@@ -36,7 +36,7 @@ function Index() {
   const { user, error, isLoading } = useUser();
   const [prompt, setPrompt] = useState(1000);
   const [numWords, setNumWords] = useState(1000);
-  //   const [response, setResponse] = useState("");
+  const [response, setResponse] = useState("");
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -63,12 +63,15 @@ function Index() {
   async function updateCredits() {
     var axios = require("axios").default;
 
+    console.log(user.access_token);
+    console.log(user.sub);
+
     var options = {
       method: "PATCH",
-      url: `/api/v2/users/${user.sub}`,
+      url: `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
       headers: {
-        authorization: `Bearer ${user.access_token}123`,
-        "content-type": "application/json",
+        authorization: `Bearer ${user.access_token}`,
+        'content-type': 'application/json',
       },
       data: {
         user_metadata: {
@@ -79,8 +82,8 @@ function Index() {
 
     axios
       .request(options)
-      .then(function (response) {
-        console.log(response.data);
+      .then(function (response2) {
+        console.log(response2.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -328,7 +331,7 @@ function Index() {
             <TextField
               id="outlined-disabled"
               label="Essay will populate here, no input required"
-              //   value={response}
+              value={response}
               multiline
               rows={14}
               fullWidth
