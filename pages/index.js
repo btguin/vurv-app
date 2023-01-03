@@ -297,10 +297,10 @@ function Index() {
             variant="contained"
             color="primary"
             sx={{ mt: 2, mb: 1 }}
-            // onClick={() => {
-            //   //   generateCompletions(prompt, numWords);
-            //   generateCompletions(prompt);
-            // }}
+            onClick={() => {
+              //   generateCompletions(prompt, numWords);
+              generateCompletions(prompt);
+            }}
           >
             CREATE ESSAY
           </Button>
