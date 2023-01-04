@@ -193,9 +193,9 @@ function Index() {
             // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
             sx={{ mb: 2 }}
           >
-            Welcome to Vurvo. We use artificial intelligence to write essays.
-            Create an account to begin. Your first essay is free, after that it
-            costs $3 per month for up to 100 essays. An example prompt and essay
+            Welcome to Vurvo. We use artificial intelligence to create stories.
+            Create an account to begin. Your first story is free, after that it
+            costs $3 per month for up to 100 essays. An example prompt and story
             is shown below.
           </Typography>
         )}
@@ -206,8 +206,8 @@ function Index() {
             // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
             sx={{ mb: 2 }}
           >
-            You have 1/1 essays remaining. Upgrade your account for $3 per month
-            for up to 100 essays.
+            You have 1/1 stories remaining. Upgrade your account for $3 per month
+            for up to 100 stories.
           </Typography>
         )}
         <Typography
@@ -216,7 +216,7 @@ function Index() {
           gutterBottom
           //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
-          Essay Inputs
+          Story Inputs
         </Typography>
         <Box sx={{ p: 1 }}>
           {!user && (
@@ -302,7 +302,7 @@ function Index() {
               generateCompletions(prompt);
             }}
           >
-            CREATE ESSAY
+            CREATE STORY
           </Button>
         </Box>
         <Typography
@@ -311,7 +311,7 @@ function Index() {
           gutterBottom
           //   sx={{ fontFamily: theme.typography.fontFamilyUnbounded }}
         >
-          Essay
+          Story
         </Typography>
         <Box sx={{ p: 2 }}>
           {!user && (
