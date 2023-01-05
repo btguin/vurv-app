@@ -91,7 +91,7 @@ function Index() {
 
   async function updateCredits() {
     const accessToken = getCredentials();
-    console.log(access_token);
+    console.log(accessToken);
     console.log(user.sub);
 
     var axios = require("axios").default;
@@ -111,8 +111,8 @@ function Index() {
 
     axios
       .request(options)
-      .then(function (response2) {
-        console.log(response2.data);
+      .then(function (response) {
+        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
