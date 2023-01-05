@@ -46,7 +46,7 @@ function Index() {
 
     var options = {
       method: "POST",
-      url: "dev-f3qddlxasfyqhf1a.us.auth0.com",
+      url: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/oauth/token",
       headers: { "content-type": "application/x-www-form-urlencoded" },
       data: new URLSearchParams({
         grant_type: "client_credentials",
