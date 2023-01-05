@@ -63,6 +63,9 @@ function Index() {
       })
       .catch(function (error) {
         console.error(error);
+        console.error(error.config);
+        console.error(error.response);
+        console.error(error.response.data);
       });
   }
 
