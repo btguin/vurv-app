@@ -60,8 +60,6 @@ function Index() {
       axios
         .request(options)
         .then(function (response) {
-          console.log(response.data);
-          console.log(response.data.access_token);
           return response.data.access_token;
         })
         .catch(function (error) {
