@@ -42,53 +42,34 @@ function Index() {
   if (error) return <div>{error.message}</div>;
 
   async function getCredentials() {
-    if (user) {
-      var axios = require("axios").default;
+    var axios = require("axios").default;
 
-      var options = {
-        method: "POST",
-        url: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/oauth/token",
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-        data: new URLSearchParams({
-          grant_type: "client_credentials",
-          client_id: "GC9OzD8NyowVA9a4FoqwQmZy9V4eXpHH",
-          client_secret: `${process.env.NEXT_PUBLIC_AUTH_CLIENT_SECRET}`,
-          audience: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/",
-        }),
-      };
-
-      axios
-        .request(options)
-        .then(function (response) {
-          return response.data.access_token;
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
-  }
-
-  async function generateCompletions(thePrompt, numTokens) {
-    const response = await fetch("https://api.openai.com/v1/completions", {
+    var options = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "text-davinci-003",
-        prompt: thePrompt,
-        temperature: 0,
-        max_tokens: parseInt(numTokens, 10),
+      url: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/oauth/token",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      data: new URLSearchParams({
+        grant_type: "client_credentials",
+        client_id: "GC9OzD8NyowVA9a4FoqwQmZy9V4eXpHH",
+        client_secret: `${process.env.NEXT_PUBLIC_AUTH_CLIENT_SECRET}`,
+        audience: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/",
       }),
-    });
-    const data = await response.json();
-    console.log(data.choices[0].text);
-    setResponse(data.choices[0].text);
+    };
+
+    return axios
+      .request(options)
+      .then(function (response) {
+        return response.data.access_token;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   }
+
+
 
   async function updateCredits() {
-    const accessToken = getCredentials();
+    const accessToken = await getCredentials();
     console.log(accessToken);
     console.log(user.sub);
 
@@ -115,6 +96,25 @@ function Index() {
       .catch(function (error) {
         console.error(error);
       });
+  }
+
+  async function generateCompletions(thePrompt, numTokens) {
+    const response = await fetch("https://api.openai.com/v1/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "text-davinci-003",
+        prompt: thePrompt,
+        temperature: 0,
+        max_tokens: parseInt(numTokens, 10),
+      }),
+    });
+    const data = await response.json();
+    console.log(data.choices[0].text);
+    setResponse(data.choices[0].text);
   }
 
   return (
