@@ -41,6 +41,35 @@ function Index() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
+  async function getCredentials() {
+    var axios = require("axios").default;
+
+    var options = {
+      method: "POST",
+      url: "dev-f3qddlxasfyqhf1a.us.auth0.com",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      data: new URLSearchParams({
+        grant_type: "client_credentials",
+        client_id: "GC9OzD8NyowVA9a4FoqwQmZy9V4eXpHH",
+        client_secret: `${process.env.NEXT_PUBLIC_AUTH_CLIENT_SECRET}`,
+        audience: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/",
+      }),
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+  if (user) {
+    getCredentials();
+  }
+
   async function generateCompletions(thePrompt, numTokens) {
     const response = await fetch("https://api.openai.com/v1/completions", {
       method: "POST",
@@ -68,10 +97,10 @@ function Index() {
 
     var options = {
       method: "PATCH",
-      url: `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
+      url: `dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/users/${user.sub}`,
       headers: {
         authorization: `Bearer ${user.access_token}`,
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       data: {
         user_metadata: {
@@ -89,6 +118,7 @@ function Index() {
         console.error(error);
       });
 
+    // chatGPT bot code attempt below
     // try {
     //     const response = await fetch(
     //       `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
@@ -206,8 +236,8 @@ function Index() {
             // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
             sx={{ mb: 2 }}
           >
-            You have 1/1 stories remaining. Upgrade your account for $3 per month
-            for up to 100 stories.
+            You have 1/1 stories remaining. Upgrade your account for $3 per
+            month for up to 100 stories.
           </Typography>
         )}
         <Typography
