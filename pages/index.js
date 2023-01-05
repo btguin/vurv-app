@@ -61,6 +61,7 @@ function Index() {
       .then(function (response) {
         console.log(response.data);
         console.log(response.data.access_token);
+        return(response.data.access_token);
       })
       .catch(function (error) {
         console.error(error);
@@ -68,7 +69,8 @@ function Index() {
   }
 
   if (user) {
-    getCredentials();
+    const accessToken = getCredentials();
+    console.log(accessToken);
   }
 
   async function generateCompletions(thePrompt, numTokens) {
@@ -100,7 +102,7 @@ function Index() {
       method: "PATCH",
       url: `dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/users/${user.sub}`,
       headers: {
-        authorization: `Bearer ${user.access_token}`,
+        authorization: `Bearer ${accessToken}`,
         "content-type": "application/json",
       },
       data: {
