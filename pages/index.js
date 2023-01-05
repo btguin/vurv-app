@@ -60,12 +60,10 @@ function Index() {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        console.log(response.data.access_token);
       })
       .catch(function (error) {
         console.error(error);
-        console.error(error.config);
-        console.error(error.response);
-        console.error(error.response.data);
       });
   }
 
