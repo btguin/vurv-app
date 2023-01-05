@@ -42,35 +42,32 @@ function Index() {
   if (error) return <div>{error.message}</div>;
 
   async function getCredentials() {
-    var axios = require("axios").default;
+    if (user) {
+      var axios = require("axios").default;
 
-    var options = {
-      method: "POST",
-      url: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/oauth/token",
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-      data: new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: "GC9OzD8NyowVA9a4FoqwQmZy9V4eXpHH",
-        client_secret: `${process.env.NEXT_PUBLIC_AUTH_CLIENT_SECRET}`,
-        audience: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/",
-      }),
-    };
+      var options = {
+        method: "POST",
+        url: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/oauth/token",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        data: new URLSearchParams({
+          grant_type: "client_credentials",
+          client_id: "GC9OzD8NyowVA9a4FoqwQmZy9V4eXpHH",
+          client_secret: `${process.env.NEXT_PUBLIC_AUTH_CLIENT_SECRET}`,
+          audience: "https://dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/",
+        }),
+      };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        console.log(response.data.access_token);
-        return(response.data.access_token);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }
-
-  if (user) {
-    const accessToken = getCredentials();
-    console.log(accessToken);
+      axios
+        .request(options)
+        .then(function (response) {
+          console.log(response.data);
+          console.log(response.data.access_token);
+          return response.data.access_token;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
   }
 
   async function generateCompletions(thePrompt, numTokens) {
@@ -93,11 +90,11 @@ function Index() {
   }
 
   async function updateCredits() {
-    var axios = require("axios").default;
-
-    console.log(user.access_token);
+    const accessToken = getCredentials();
+    console.log(access_token);
     console.log(user.sub);
 
+    var axios = require("axios").default;
     var options = {
       method: "PATCH",
       url: `dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/users/${user.sub}`,
@@ -120,41 +117,6 @@ function Index() {
       .catch(function (error) {
         console.error(error);
       });
-
-    // chatGPT bot code attempt below
-    // try {
-    //     const response = await fetch(
-    //       `https://vurv-app.vercel.app/api/v2/users/${user.sub}`,
-    //       {
-    //         method: "PATCH",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           authorization: `Bearer ${user.access_token}`,
-    //         },
-    //         body: JSON.stringify({
-    //           user_metadata: {
-    //             credits: "1 credit",
-    //           },
-    //         }),
-    //       }
-    //     );
-
-    //     const responseBody = await response.json();
-    //     console.log(responseBody);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-
-    // const updatedUser = await auth0.users.get(
-    //   { id: user.sub },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${user.access_token}`,
-    //     },
-    //   }
-    // );
-
-    // console.log(updatedUser.user_metadata.credits);
   }
 
   return (
