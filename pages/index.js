@@ -66,8 +66,6 @@ function Index() {
       });
   }
 
-
-
   async function updateCredits() {
     const accessToken = await getCredentials();
     console.log(accessToken);
@@ -76,7 +74,7 @@ function Index() {
     var axios = require("axios").default;
     var options = {
       method: "PATCH",
-      url: `dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/users/${user.sub}`,
+      url: `https://dev-f3qddlxasfyqhf1a.us.auth0.com/api/v2/users/${user.sub}`,
       headers: {
         authorization: `Bearer ${accessToken}`,
         "content-type": "application/json",
