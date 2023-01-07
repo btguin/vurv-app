@@ -34,9 +34,11 @@ import axios from "axios";
 // function Index({ chatGPTData, errorMessage }) {
 function Index() {
   const { user, error, isLoading } = useUser();
-  const [prompt, setPrompt] = useState(1000);
-  const [numWords, setNumWords] = useState(1000);
+  const [prompt, setPrompt] = useState("");
+  const [numWords, setNumWords] = useState("");
   const [response, setResponse] = useState("");
+  const [creationsRemaining, setCreationsRemaining] = useState(1);
+  const [totalCreations, setTotalCreations] = useState(1);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -197,7 +199,7 @@ function Index() {
             // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
             sx={{ mb: 2 }}
           >
-            You have 1/1 stories remaining. Upgrade your account for $3 per
+            You have ${creationsRemaining}/${totalCreations} stories remaining. Upgrade your account for $3 per
             month for up to 100 stories.
           </Typography>
         )}
