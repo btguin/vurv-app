@@ -83,10 +83,14 @@ function Index() {
       },
       data: {
         user_metadata: {
-          addresses: { home: "123 Main Street, Anytown, ST 12345" },
+          creationsRemaining: 100,
+          totalCreations: 100
         },
       },
     };
+
+    setCreationsRemaining(100);
+    setTotalCreations(100);
 
     axios
       .request(options)
@@ -199,7 +203,7 @@ function Index() {
             // sx={{ mb: 2, fontFamily: theme.typography.fontFamilyUnbounded }}
             sx={{ mb: 2 }}
           >
-            You have ${creationsRemaining}/${totalCreations} stories remaining. Upgrade your account for $3 per
+            You have {creationsRemaining}/{totalCreations} stories remaining. Upgrade your account for $3 per
             month for up to 100 stories.
           </Typography>
         )}
